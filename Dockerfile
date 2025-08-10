@@ -20,10 +20,12 @@ RUN apt-get update -qq && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set production environment
-ENV RAILS_ENV="production" \
+# ENV RAILS_ENV="production" \
+ENV RAILS_ENV="development" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+    BUNDLE_WITHOUT="development"\
+    SECRET_KEY_BASE=2b599ed0dc961c2f083b94e69b9a1982a1b4703e2e656019c32ea6ce97dff2587015e5ef8c357d9f485683355e7eaf2af520e645ce42d2c8a3742395bb9cf140
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
@@ -52,8 +54,6 @@ RUN chmod +x bin/* && \
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 # RUN SECRET_KEY_BASE_DUMMY=13424234234242342342342342342342342342342342342342342342342342342342342342342432342 ./bin/rails assets:precompile
-
-ENV SECRET_KEY_BASE=2b599ed0dc961c2f083b94e69b9a1982a1b4703e2e656019c32ea6ce97dff2587015e5ef8c357d9f485683355e7eaf2af520e645ce42d2c8a3742395bb9cf140
 
 # Final stage for app image
 FROM base
