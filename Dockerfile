@@ -55,7 +55,6 @@ RUN chmod +x bin/* && \
 
 ENV SECRET_KEY_BASE=2b599ed0dc961c2f083b94e69b9a1982a1b4703e2e656019c32ea6ce97dff2587015e5ef8c357d9f485683355e7eaf2af520e645ce42d2c8a3742395bb9cf140
 
-
 # Final stage for app image
 FROM base
 
