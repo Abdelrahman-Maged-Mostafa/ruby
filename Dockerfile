@@ -53,7 +53,7 @@ RUN chmod +x bin/* && \
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 # RUN SECRET_KEY_BASE_DUMMY=13424234234242342342342342342342342342342342342342342342342342342342342342342432342 ./bin/rails assets:precompile
 
-RUN SECRET_KEY_BASE=ee21fcbff858a4f4ed3de8fb9988b835 bundle exec rails assets:precompile
+ENV SECRET_KEY_BASE=2b599ed0dc961c2f083b94e69b9a1982a1b4703e2e656019c32ea6ce97dff2587015e5ef8c357d9f485683355e7eaf2af520e645ce42d2c8a3742395bb9cf140
 
 
 # Final stage for app image
