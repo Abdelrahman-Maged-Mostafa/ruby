@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Spofs" %>
+
+<h1>Spofs</h1>
+
+<div id="spofs">
+  <% @spofs.each do |spof| %>
+    <%= render spof %>
+    <p>
+      <%= link_to "Show this spof", spof %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New spof", new_spof_path %>

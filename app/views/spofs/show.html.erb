@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @spof %>
+
+<div>
+  <%= link_to "Edit this spof", edit_spof_path(@spof) %> |
+  <%= link_to "Back to spofs", spofs_path %>
+
+  <%= button_to "Destroy this spof", @spof, method: :delete %>
+</div>

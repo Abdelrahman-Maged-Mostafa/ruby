@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :spofs
+  # resources :articles ,only: [:show,:index]
   resources :articles
   root "pages#home"
   get "about", to: "pages#about"
