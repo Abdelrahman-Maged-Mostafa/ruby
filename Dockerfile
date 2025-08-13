@@ -3,19 +3,23 @@ FROM ruby:$RUBY_VERSION-slim AS base
 
 WORKDIR /rails
 
-# Install Node.js and Yarn
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get update -qq && \
+# Install system dependencies including curl and gnupg for Yarn setup
+RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
     curl \
+    gnupg \
+    ca-certificates && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarn.gpg > /dev/null && \
+    echo "deb [signed-by=/usr/share/keyrings/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
     libjemalloc2 \
     libvips \
     sqlite3 \
     nodejs \
-    yarn \
-    && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives
+    yarn && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives
 
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
