@@ -19,6 +19,7 @@ RUN apt-get update -qq && \
     sqlite3 \
     nodejs \
     yarn && \
+    yarn add @rails/ujs bootstrap @popperjs/core && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives
 
 ENV RAILS_ENV="production" \
