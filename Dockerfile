@@ -52,9 +52,9 @@ RUN chmod +x bin/* && \
     sed -i 's/ruby\.exe$/ruby/' bin/*
 
 # Install JS dependencies (needed for jsbundling-rails)
-RUN rm -f package-lock.json && \
-    yarn install && \
-    yarn add @rails/ujs bootstrap @popperjs/core
+RUN yarn install
+RUN yarn build
+RUN bundle exec rails assets:precompile
 
 # Precompile assets
 RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
