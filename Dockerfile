@@ -54,7 +54,10 @@ RUN chmod +x bin/* && \
 # Install JS dependencies (needed for jsbundling-rails)
 RUN yarn install
 RUN yarn build
+
+# Set dummy secret key for asset precompilation
+ENV SECRET_KEY_BASE=DUMMY_KEY
 RUN bundle exec rails assets:precompile
 
-# Precompile assets
-RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
+# Start Rails server on Railway's expected port
+CMD ["bash", "-c", "bin/rails server -b 0.0.0.0 -p ${PORT:-3000}"]
