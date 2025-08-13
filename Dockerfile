@@ -59,6 +59,5 @@ RUN yarn build
 ENV SECRET_KEY_BASE=DUMMY_KEY
 RUN bundle exec rails assets:precompile
 
-RUN RAILS_ENV=production bundle exec rails db:migrate
 # Start Rails server on Railway's expected port
 CMD ["bash", "-c", "bin/rails server -b 0.0.0.0 -p ${PORT:-3000}"]
