@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   # config/routes.rb
-  if Rails.env.production?
-  get "/run_migrations", to: "admin#migrate"
-  end
   resources :spofs
   # resources :articles ,only: [:show,:index]
   resources :articles
