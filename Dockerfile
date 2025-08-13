@@ -19,7 +19,6 @@ RUN apt-get update -qq && \
     sqlite3 \
     nodejs \
     yarn && \
-    yarn add @rails/ujs bootstrap @popperjs/core && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives
 
 ENV RAILS_ENV="production" \
@@ -53,7 +52,9 @@ RUN chmod +x bin/* && \
     sed -i 's/ruby\.exe$/ruby/' bin/*
 
 # Install JS dependencies (needed for jsbundling-rails)
-RUN yarn install
+RUN rm -f package-lock.json && \
+    yarn install && \
+    yarn add @rails/ujs bootstrap @popperjs/core
 
 # Precompile assets
 RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
