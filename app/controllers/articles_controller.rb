@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
+  before_action :require_user, except: [ :show , :index]
+  before_action :require_same_user, only: [ :edit , :update , :destroy]
 
   # GET /articles or /articles.json
   def index
@@ -22,7 +24,8 @@ class ArticlesController < ApplicationController
   # POST /articles or /articles.json
   def create
     @article = Article.new(article_params)
-
+    @article.user_id = cur_user.id
+    
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: "Article was successfully created." }
@@ -66,5 +69,11 @@ class ArticlesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def article_params
       params.expect(article: [ :title, :description ])
+    end
+
+    def require_same_user
+      if cur_user != @article.user && !cur_user.admin
+        redirect_to @article
+      end
     end
 end

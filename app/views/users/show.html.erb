@@ -1,0 +1,28 @@
+<p style="color: green"><%= notice %></p>
+
+<%= gravatar_for @user , size:200 %>
+
+<%= render @user %>
+
+ <div>
+    <strong>Articles</strong>
+    <br>
+    <% @user.articles.each do |art| %>
+      <br>
+      <%= render "articles/article", article: art%>
+      <br>
+      <div>
+      <%= link_to "Edit this article", edit_article_path(art) %> |
+  
+      <%= button_to "Destroy this article", art, method: :delete, data: { turbo:false ,confirm: "Are you sure to delete ?" } %>
+      </div>
+    <% end %>
+    <br>
+    <br>
+  </div>
+
+<div>
+  <%= link_to "Edit this user", edit_user_path(@user) %> |
+  <%= link_to "Back to articles", articles_path %>
+  <%= button_to "Destroy this user", @user, method: :delete, data: { turbo:false ,confirm: "Are you sure to delete ?" } %>
+</div>

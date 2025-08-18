@@ -1,0 +1,12 @@
+<% content_for :title, "Editing Profile" %>
+
+<h1>Editing Profile</h1>
+
+<%= render "form", user: @user ,edit:true%>
+
+<br>
+
+<div>
+  <%= link_to "Home", root_path %> |
+  <%= link_to "Back to articles", articles_path %>
+</div>

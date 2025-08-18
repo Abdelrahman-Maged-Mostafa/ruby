@@ -1,0 +1,11 @@
+<% content_for :title, "Create user" %>
+
+<h1>Sign up</h1>
+
+<%= render "form", user: @user , edit:false %>
+
+<br>
+
+<div>
+  <%= link_to "Go to Login", articles_path %>
+</div>

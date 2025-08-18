@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Users" %>
+
+<h1>Users</h1>
+
+<div id="users">
+  <% @users.each do |user| %>
+    <%= render user %>
+    <p>
+    <strong>Articles count:</strong>
+    <%= user.articles.length %>
+    </p>
+    <p>
+      <%= link_to "Show this user", user %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New user", signup_path %>
+
+<p>
+<%= link_to "Home page" , root_path %> |
+<%= link_to "About page", about_path %>
+</p>
