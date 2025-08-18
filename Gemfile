@@ -30,8 +30,6 @@ gem "solid_queue"
 gem "solid_cable"
 
 gem "jsbundling-rails"
-gem "dartsass-rails"       # SCSS to CSS compiler
-gem "bootstrap", "~> 5.3.3" # Bootstrap SCSS
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
