@@ -71,9 +71,8 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      # permitted = [:username, :email,:admin]
       permitted = [:username, :email]
-      permitted << :password unless params[:user][:password].blank?
+      permitted << :password if params[:user].present? && params[:user][:password].present?
       params.require(:user).permit(permitted)
     end
 
