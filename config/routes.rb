@@ -25,4 +25,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 end
-# start in video 25 in part 6
+# start in video 2 in part 7
