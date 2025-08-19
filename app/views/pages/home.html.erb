@@ -1,5 +1,6 @@
 <h1>This is home page</h1>
 <%= link_to "Articles List", articles_path %> |
+<%= link_to "Categories List", categories_path %> |
 <%= link_to "About page" , about_path %> |
 <% if logged_in? %>
 <%= link_to "#{cur_user.username}" , cur_user  %> |

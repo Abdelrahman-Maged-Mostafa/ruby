@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render "category", cate: @cate %>
+<hr/>
+<p><strong>Articles</strong></p>
+<hr/>
+<% @cate.articles.each do |art| %>
+  <%= render "articles/article" , article:art %>
+  <hr/>
+<% end %>
+
+<div>
+  <%= link_to "Edit this category", edit_category_path(@cate) %> |
+  <%= link_to "Back to categories", categories_path %>
+  <%= button_to "Destroy this category", @cate, method: :delete, data: { turbo:false ,confirm: "Are you sure to delete ?" } %>
+</div>

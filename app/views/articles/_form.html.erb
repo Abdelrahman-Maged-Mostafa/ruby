@@ -22,6 +22,12 @@
   </div>
 
   <div>
+    <%= form.label :categories, style: "display: block" %>
+    <%= form.collection_select(:category_ids, Category.all, :id, :name,{prompt: "Make your selection from the list below (can be empty)"},{:multiple => true} ) %>
+  </div>
+  <br/>
+  <br/>
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
